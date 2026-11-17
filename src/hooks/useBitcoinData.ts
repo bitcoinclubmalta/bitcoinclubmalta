@@ -20,6 +20,14 @@ interface BitcoinData {
 
 const HALVING_BLOCK_INTERVAL = 210000;
 
+// Every request gets its own timeout so one slow endpoint can never
+// hold the whole dashboard in the loading state.
+const fetchJson = async (url: string) => {
+  const res = await fetch(url, { signal: AbortSignal.timeout(8000) });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  return res.json();
+};
+
 export function useBitcoinData() {
   const [data, setData] = useState<BitcoinData>({
     price: 0,
@@ -45,7 +53,7 @@ export function useBitcoinData() {
     const currentHalvingEpoch = Math.floor(blockHeight / HALVING_BLOCK_INTERVAL);
     const nextHalvingBlock = (currentHalvingEpoch + 1) * HALVING_BLOCK_INTERVAL;
     const blocksRemaining = nextHalvingBlock - blockHeight;
-    
+
     // Average block time is ~10 minutes
     const minutesRemaining = blocksRemaining * 10;
     const days = Math.floor(minutesRemaining / (60 * 24));
@@ -56,75 +64,67 @@ export function useBitcoinData() {
   }, []);
 
   const fetchData = useCallback(async () => {
-    try {
-      // Fetch Bitcoin price from mempool.space
-      const priceResponse = await fetch('https://mempool.space/api/v1/prices');
-      const priceData = await priceResponse.json();
+    // All endpoints in parallel, each settling on its own: whatever
+    // succeeds updates the dashboard, whatever fails keeps its last
+    // known (or default) value instead of blocking everything.
+    const [prices, history, mempoolBlocks, blockHeight, fees, hashrate] =
+      await Promise.allSettled([
+        fetchJson('https://mempool.space/api/v1/prices'),
+        fetchJson('https://mempool.space/api/v1/historical-price?currency=USD&period=1d'),
+        fetchJson('https://mempool.space/api/v1/fees/mempool-blocks'),
+        fetchJson('https://mempool.space/api/blocks/tip/height'),
+        fetchJson('https://mempool.space/api/v1/fees/recommended'),
+        fetchJson('https://mempool.space/api/v1/mining/hashrate/1w'),
+      ]);
 
-      // Fetch the last 24h of hourly prices from mempool.space for the 24h change
-      const historyResponse = await fetch(
-        'https://mempool.space/api/v1/historical-price?currency=USD&period=1d'
-      );
-      const historyData = await historyResponse.json();
-      
-      // Fetch mempool data
-      const mempoolResponse = await fetch('https://mempool.space/api/v1/fees/mempool-blocks');
-      const mempoolData = await mempoolResponse.json();
-      
-      // Fetch block height
-      const blockHeightResponse = await fetch('https://mempool.space/api/blocks/tip/height');
-      const blockHeight = await blockHeightResponse.json();
+    setData((prev) => {
+      const next = { ...prev };
 
-      // Fetch recommended fees
-      const feesResponse = await fetch('https://mempool.space/api/v1/fees/recommended');
-      const feesData = await feesResponse.json();
+      if (prices.status === 'fulfilled' && prices.value.USD) {
+        next.price = prices.value.USD;
+        next.satsPerDollar = Math.round(100000000 / next.price);
+      }
 
-      // Fetch hashrate
-      const hashrateResponse = await fetch('https://mempool.space/api/v1/mining/hashrate/1w');
-      const hashrateData = await hashrateResponse.json();
+      if (history.status === 'fulfilled' && next.price > 0) {
+        const points = history.value.prices || [];
+        const price24hAgo = points.length > 0 ? points[points.length - 1].USD : 0;
+        if (price24hAgo > 0) {
+          next.priceChange24h = ((next.price - price24hAgo) / price24hAgo) * 100;
+        }
+      }
 
-      const price = priceData.USD || 0;
-      const historyPoints = historyData.prices || [];
-      const price24hAgo = historyPoints.length > 0 ? historyPoints[historyPoints.length - 1].USD : 0;
-      const priceChange24h = price24hAgo > 0 ? ((price - price24hAgo) / price24hAgo) * 100 : 0;
-      const satsPerDollar = price > 0 ? Math.round(100000000 / price) : 0;
-      
-      // Calculate mempool size and tx count
-      const totalMempoolSize = mempoolData.reduce((acc: number, block: { blockSize: number }) => acc + block.blockSize, 0);
-      const mempoolSizeVMB = Math.round(totalMempoolSize / 1000000);
+      if (mempoolBlocks.status === 'fulfilled' && Array.isArray(mempoolBlocks.value)) {
+        const totalSize = mempoolBlocks.value.reduce(
+          (acc: number, block: { blockSize: number }) => acc + block.blockSize,
+          0
+        );
+        next.mempoolSize = Math.round(totalSize / 1000000);
+        next.mempoolTxCount =
+          mempoolBlocks.value.length > 0 ? mempoolBlocks.value[0].nTx || 0 : 0;
+      }
 
-      // Calculate halving time
-      const halvingInfo = calculateHalvingTime(blockHeight);
+      if (blockHeight.status === 'fulfilled' && typeof blockHeight.value === 'number') {
+        next.blockHeight = blockHeight.value;
+        const halving = calculateHalvingTime(blockHeight.value);
+        next.nextHalvingBlocks = halving.blocksRemaining;
+        next.nextHalvingDays = halving.days;
+        next.nextHalvingHours = halving.hours;
+        next.nextHalvingMinutes = halving.minutes;
+      }
 
-      // Format hashrate
-      const currentHashrate = hashrateData.currentHashrate || 0;
-      const hashRateEH = (currentHashrate / 1e18).toFixed(0);
+      if (fees.status === 'fulfilled') {
+        next.nextBlockFee = fees.value.fastestFee || 0;
+      }
 
-      setData({
-        price,
-        priceChange24h,
-        satsPerDollar,
-        blockHeight,
-        mempoolSize: mempoolSizeVMB,
-        mempoolTxCount: mempoolData.length > 0 ? mempoolData[0].nTx || 0 : 0,
-        nextBlockFee: feesData.fastestFee || 0,
-        hashRate: `~${hashRateEH} EH/s`,
-        lightningCapacity: 5346,
-        lightningNodes: 10900,
-        lightningChannels: 39655,
-        nextHalvingBlocks: halvingInfo.blocksRemaining,
-        nextHalvingDays: halvingInfo.days,
-        nextHalvingHours: halvingInfo.hours,
-        nextHalvingMinutes: halvingInfo.minutes,
-      });
-      
-      setIsLoading(false);
-      setError(null);
-    } catch (err) {
-      console.error('Error fetching Bitcoin data:', err);
-      setError('Failed to fetch data');
-      setIsLoading(false);
-    }
+      if (hashrate.status === 'fulfilled' && hashrate.value.currentHashrate) {
+        next.hashRate = `~${(hashrate.value.currentHashrate / 1e18).toFixed(0)} EH/s`;
+      }
+
+      return next;
+    });
+
+    setIsLoading(false);
+    setError(null);
   }, [calculateHalvingTime]);
 
   useEffect(() => {
