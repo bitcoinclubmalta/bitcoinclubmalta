@@ -27,7 +27,7 @@ export default function ComingSoon() {
       <header className="border-b border-border">
         <div className="container flex items-center justify-center h-42">
           <a href={import.meta.env.BASE_URL} className="flex items-center justify-center">
-            <img src={`${import.meta.env.BASE_URL}logo.png`} alt="Bitcoin Club Malta" className="h-32 w-auto" />
+            <img src={`${import.meta.env.BASE_URL}logo-full.png`} alt="Bitcoin Club Malta" className="h-32 w-auto invert" />
           </a>
         </div>
       </header>

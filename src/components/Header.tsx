@@ -19,9 +19,9 @@ export function Header() {
       <div className="container flex items-center justify-between h-16">
         <a href={import.meta.env.BASE_URL} className="flex items-center">
           <img
-            src={`${import.meta.env.BASE_URL}logo.png`}
+            src={`${import.meta.env.BASE_URL}logo-full.png`}
             alt="Bitcoin Club Malta"
-            className="h-12 w-auto"
+            className="h-12 w-auto invert"
           />
         </a>
 
