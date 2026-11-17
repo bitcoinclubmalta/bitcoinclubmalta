@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { useBitcoinData } from '@/hooks/useBitcoinData';
 import { ArrowDown } from 'lucide-react';
+import { LoadingDots } from '@/components/LoadingDots';
 
 export function Hero() {
   const { data, isLoading } = useBitcoinData();
@@ -77,7 +78,7 @@ export function Hero() {
               <span className="text-sm text-muted-foreground">Bitcoin Price</span>
             </div>
             <div className="font-heading text-4xl lg:text-5xl mb-2">
-              {isLoading ? '...' : formatPrice(data.price)}
+              {isLoading ? <LoadingDots /> : formatPrice(data.price)}
             </div>
             <div className="text-sm text-muted-foreground">
               1 USD = {formatNumber(data.satsPerDollar)} sats

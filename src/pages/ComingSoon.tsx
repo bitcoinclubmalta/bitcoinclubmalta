@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { useBitcoinData } from "@/hooks/useBitcoinData";
 import { SEO } from "@/components/SEO";
+import { LoadingDots } from "@/components/LoadingDots";
 
 export default function ComingSoon() {
   const { data, isLoading } = useBitcoinData();
@@ -101,7 +102,7 @@ export default function ComingSoon() {
         <aside className="border-t lg:border-t-0 lg:border-l border-border bg-secondary/30 flex flex-col">
           <div className="border-b border-border p-6 lg:p-8">
             <span className="text-sm text-muted-foreground block mb-2">Bitcoin Price</span>
-            <div className="font-heading text-4xl lg:text-5xl mb-2">{isLoading ? "…" : formatPrice(data.price)}</div>
+            <div className="font-heading text-4xl lg:text-5xl mb-2">{isLoading ? <LoadingDots /> : formatPrice(data.price)}</div>
             <div className="text-sm text-muted-foreground">1 USD = {formatNumber(data.satsPerDollar)} sats</div>
           </div>
 

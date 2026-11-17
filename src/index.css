@@ -144,6 +144,10 @@
   .animate-pulse-dot {
     animation: pulseDot 2s ease-in-out infinite;
   }
+
+  .animate-loading-dot {
+    animation: loadingDot 1.4s ease-in-out infinite;
+  }
 }
 
 @keyframes fadeIn {
@@ -172,5 +176,14 @@
   }
   50% {
     opacity: 0.5;
+  }
+}
+
+@keyframes loadingDot {
+  0%, 60%, 100% {
+    opacity: 0.2;
+  }
+  30% {
+    opacity: 1;
   }
 }
