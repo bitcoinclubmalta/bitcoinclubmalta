@@ -28,6 +28,12 @@ const fetchJson = async (url: string) => {
   return res.json();
 };
 
+const fetchText = async (url: string) => {
+  const res = await fetch(url, { signal: AbortSignal.timeout(8000) });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  return res.text();
+};
+
 export function useBitcoinData() {
   const [data, setData] = useState<BitcoinData>({
     price: 0,
@@ -82,6 +88,34 @@ export function useBitcoinData() {
         fetchJson('https://mempool.space/api/v1/mining/hashrate/1w'),
       ]);
 
+    // Fallback for the mempool.space pieces: blockstream.info serves the
+    // same height, fee estimate and mempool size, so a mempool.space
+    // outage or block never leaves Block #0 / 0 sat/vB on the page.
+    let fbHeight: number | null = null;
+    let fbFee: number | null = null;
+    let fbMempoolVsize: number | null = null;
+    if (
+      blockHeight.status === 'rejected' ||
+      fees.status === 'rejected' ||
+      mempoolBlocks.status === 'rejected'
+    ) {
+      const [bsHeight, bsFees, bsMempool] = await Promise.allSettled([
+        fetchText('https://blockstream.info/api/blocks/tip/height'),
+        fetchJson('https://blockstream.info/api/fee-estimates'),
+        fetchJson('https://blockstream.info/api/mempool'),
+      ]);
+      if (bsHeight.status === 'fulfilled') {
+        const n = parseInt(bsHeight.value, 10);
+        if (!Number.isNaN(n)) fbHeight = n;
+      }
+      if (bsFees.status === 'fulfilled' && bsFees.value['1']) {
+        fbFee = Math.ceil(bsFees.value['1']);
+      }
+      if (bsMempool.status === 'fulfilled' && typeof bsMempool.value.vsize === 'number') {
+        fbMempoolVsize = bsMempool.value.vsize;
+      }
+    }
+
     setData((prev) => {
       const next = { ...prev };
 
@@ -112,11 +146,17 @@ export function useBitcoinData() {
         next.mempoolSize = Math.round(totalSize / 1000000);
         next.mempoolTxCount =
           mempoolBlocks.value.length > 0 ? mempoolBlocks.value[0].nTx || 0 : 0;
+      } else if (fbMempoolVsize !== null) {
+        next.mempoolSize = Math.round(fbMempoolVsize / 1000000);
       }
 
-      if (blockHeight.status === 'fulfilled' && typeof blockHeight.value === 'number') {
-        next.blockHeight = blockHeight.value;
-        const halving = calculateHalvingTime(blockHeight.value);
+      const heightValue =
+        blockHeight.status === 'fulfilled' && typeof blockHeight.value === 'number'
+          ? blockHeight.value
+          : fbHeight;
+      if (heightValue !== null && heightValue !== undefined) {
+        next.blockHeight = heightValue;
+        const halving = calculateHalvingTime(heightValue);
         next.nextHalvingBlocks = halving.blocksRemaining;
         next.nextHalvingDays = halving.days;
         next.nextHalvingHours = halving.hours;
@@ -125,6 +165,8 @@ export function useBitcoinData() {
 
       if (fees.status === 'fulfilled') {
         next.nextBlockFee = fees.value.fastestFee || 0;
+      } else if (fbFee !== null) {
+        next.nextBlockFee = fbFee;
       }
 
       if (hashrate.status === 'fulfilled' && hashrate.value.currentHashrate) {

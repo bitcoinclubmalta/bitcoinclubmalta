@@ -21,7 +21,7 @@ export function Header() {
           <img
             src={`${import.meta.env.BASE_URL}logo-full.png`}
             alt="Bitcoin Club Malta"
-            className="h-12 w-auto invert"
+            className="h-12 w-auto"
           />
         </a>
 
