@@ -106,6 +106,15 @@
     @apply border border-border;
   }
 
+  /* Soft hover for every tile in the hairline (gap-px) grids */
+  .grid.gap-px > * {
+    transition: background-color 0.35s ease;
+  }
+
+  .grid.gap-px > *:hover {
+    background-color: hsl(var(--muted));
+  }
+
   .stat-card {
     @apply border border-border p-6 bg-background;
   }

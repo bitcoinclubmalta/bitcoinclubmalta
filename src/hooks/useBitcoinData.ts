@@ -57,11 +57,15 @@ export function useBitcoinData() {
 
   const fetchData = useCallback(async () => {
     try {
-      // Fetch Bitcoin price from CoinGecko
-      const priceResponse = await fetch(
-        'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_24hr_change=true'
-      );
+      // Fetch Bitcoin price from mempool.space
+      const priceResponse = await fetch('https://mempool.space/api/v1/prices');
       const priceData = await priceResponse.json();
+
+      // Fetch the last 24h of hourly prices from mempool.space for the 24h change
+      const historyResponse = await fetch(
+        'https://mempool.space/api/v1/historical-price?currency=USD&period=1d'
+      );
+      const historyData = await historyResponse.json();
       
       // Fetch mempool data
       const mempoolResponse = await fetch('https://mempool.space/api/v1/fees/mempool-blocks');
@@ -79,8 +83,10 @@ export function useBitcoinData() {
       const hashrateResponse = await fetch('https://mempool.space/api/v1/mining/hashrate/1w');
       const hashrateData = await hashrateResponse.json();
 
-      const price = priceData.bitcoin?.usd || 0;
-      const priceChange24h = priceData.bitcoin?.usd_24h_change || 0;
+      const price = priceData.USD || 0;
+      const historyPoints = historyData.prices || [];
+      const price24hAgo = historyPoints.length > 0 ? historyPoints[historyPoints.length - 1].USD : 0;
+      const priceChange24h = price24hAgo > 0 ? ((price - price24hAgo) / price24hAgo) * 100 : 0;
       const satsPerDollar = price > 0 ? Math.round(100000000 / price) : 0;
       
       // Calculate mempool size and tx count
