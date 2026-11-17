@@ -67,12 +67,17 @@ export function useBitcoinData() {
     // All endpoints in parallel, each settling on its own: whatever
     // succeeds updates the dashboard, whatever fails keeps its last
     // known (or default) value instead of blocking everything.
-    const [prices, history, mempoolBlocks, blockHeight, fees, hashrate] =
+    const [gecko, prices, history, mempoolBlocks, blockHeight, fees, hashrate] =
       await Promise.allSettled([
+        // Price: CoinGecko is the source of record.
+        fetchJson('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_24hr_change=true'),
+        // Mempool prices stay as an automatic fallback so the price
+        // never sits at $0 when CoinGecko rate-limits a browser.
         fetchJson('https://mempool.space/api/v1/prices'),
         fetchJson('https://mempool.space/api/v1/historical-price?currency=USD&period=1d'),
         fetchJson('https://mempool.space/api/v1/fees/mempool-blocks'),
         fetchJson('https://mempool.space/api/blocks/tip/height'),
+        // Fees: mempool.space recommended fees.
         fetchJson('https://mempool.space/api/v1/fees/recommended'),
         fetchJson('https://mempool.space/api/v1/mining/hashrate/1w'),
       ]);
@@ -80,16 +85,22 @@ export function useBitcoinData() {
     setData((prev) => {
       const next = { ...prev };
 
-      if (prices.status === 'fulfilled' && prices.value.USD) {
+      if (gecko.status === 'fulfilled' && gecko.value.bitcoin && gecko.value.bitcoin.usd) {
+        next.price = gecko.value.bitcoin.usd;
+        next.satsPerDollar = Math.round(100000000 / next.price);
+        if (typeof gecko.value.bitcoin.usd_24h_change === 'number') {
+          next.priceChange24h = gecko.value.bitcoin.usd_24h_change;
+        }
+      } else if (prices.status === 'fulfilled' && prices.value.USD) {
         next.price = prices.value.USD;
         next.satsPerDollar = Math.round(100000000 / next.price);
-      }
 
-      if (history.status === 'fulfilled' && next.price > 0) {
-        const points = history.value.prices || [];
-        const price24hAgo = points.length > 0 ? points[points.length - 1].USD : 0;
-        if (price24hAgo > 0) {
-          next.priceChange24h = ((next.price - price24hAgo) / price24hAgo) * 100;
+        if (history.status === 'fulfilled') {
+          const points = history.value.prices || [];
+          const price24hAgo = points.length > 0 ? points[points.length - 1].USD : 0;
+          if (price24hAgo > 0) {
+            next.priceChange24h = ((next.price - price24hAgo) / price24hAgo) * 100;
+          }
         }
       }
 
