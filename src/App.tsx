@@ -7,6 +7,8 @@ import Index from "./pages/Index";
 import ComingSoon from "./pages/ComingSoon";
 import MaltaBitcoinMap from "./pages/MaltaBitcoinMap";
 import NotFound from "./pages/NotFound";
+import { OldPage } from "./pages/OldPage";
+import { oldPages } from "./data/oldPages";
 
 const queryClient = new QueryClient();
 
@@ -20,6 +22,11 @@ const App = () => (
           <Route path="/" element={<ComingSoon />} />
           <Route path="/site" element={<Index />} />
           <Route path="/malta-bitcoin-map" element={<MaltaBitcoinMap />} />
+          {/* Rebuilt pre-move (Lovable) pages, content recovered from
+              Wayback snapshots, see src/data/oldPages.ts */}
+          {oldPages.map((page) => (
+            <Route key={page.path} path={page.path} element={<OldPage page={page} />} />
+          ))}
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
