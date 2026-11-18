@@ -3503,25 +3503,5 @@ export const oldPages: OldPageData[] = [
       }
     ]
   },
-  {
-    "path": "/slides",
-    "snapshot": "none",
-    "title": "Slides | Bitcoin Club Malta",
-    "description": "The original Slides page from the previous Bitcoin Club Malta site is being restored.",
-    "blocks": [
-      {
-        "type": "h1",
-        "text": "Slides"
-      },
-      {
-        "type": "p",
-        "text": "The original content of this page is being restored."
-      },
-      {
-        "type": "link",
-        "text": "See upcoming events",
-        "href": "/events"
-      }
-    ]
-  }
+  
 ];
