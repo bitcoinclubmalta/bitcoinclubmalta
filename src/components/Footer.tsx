@@ -15,12 +15,23 @@ export function Footer() {
         </div>
       </div>
       <div className="border-t border-border">
-        <div className="container py-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
+        <div className="container py-6 grid grid-cols-1 md:grid-cols-3 items-center gap-4">
+          <div className="flex items-center gap-2 justify-center md:justify-start">
             <span className="font-heading">Bitcoin Club</span>
             <span className="text-muted-foreground text-sm">Malta</span>
           </div>
-          <div className="text-sm text-muted-foreground">
+          <div className="text-sm text-muted-foreground text-center">
+            Designed by{' '}
+            <a
+              href="https://rankplan.us"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:underline hover:text-foreground"
+            >
+              Rankplan
+            </a>
+          </div>
+          <div className="text-sm text-muted-foreground text-center md:text-right">
             © {new Date().getFullYear()} Bitcoin Club Malta. All rights reserved.
           </div>
         </div>

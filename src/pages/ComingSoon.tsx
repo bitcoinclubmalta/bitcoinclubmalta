@@ -143,9 +143,20 @@ export default function ComingSoon() {
       </main>
 
       <footer className="border-t border-border py-6">
-        <div className="container flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-muted-foreground">
-          <span>© {new Date().getFullYear()} Bitcoin Club Malta</span>
-          <span>Make Malta a Bitcoin Island</span>
+        <div className="container grid grid-cols-1 sm:grid-cols-3 items-center gap-2 text-xs text-muted-foreground">
+          <span className="text-center sm:text-left">© {new Date().getFullYear()} Bitcoin Club Malta</span>
+          <span className="text-center">
+            Designed by{' '}
+            <a
+              href="https://rankplan.us"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:underline hover:text-foreground"
+            >
+              Rankplan
+            </a>
+          </span>
+          <span className="text-center sm:text-right">Make Malta a Bitcoin Island</span>
         </div>
       </footer>
     </div>
