@@ -3503,5 +3503,96 @@ export const oldPages: OldPageData[] = [
       }
     ]
   },
-  
+  {
+    "path": "/sponsoring-opportunities",
+    "snapshot": "20251009175020",
+    "title": "Sponsoring Opportunities | Bitcoin Club Malta",
+    "description": "Sponsor Bitcoin Meetup Malta: packages for startups, bitcoin brands and heroes who want to support the community, from logo display at events to full bespoke event production.",
+    "blocks": [
+      {
+        "type": "h1",
+        "text": "Sponsoring Bitcoin Meetup Malta"
+      },
+      {
+        "type": "p",
+        "text": "Starting in 2016 we have organized dozens of meetups and events every year to connect the bitcoin community, share ideas and foster adoption. We love working with bitcoin brands and serving the needs and ideas of our sponsoring partners."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Meet, support and connect with the community",
+          "Fuel your brand fame and increase brand recognition",
+          "Connect to a network of executives, thought leaders, pioneers & innovators",
+          "Utilize an exclusive and unique marketing channel",
+          "Enjoy VIP tickets and bespoke executive offers to enjoy Malta"
+        ]
+      },
+      {
+        "type": "h2",
+        "text": "Startup Sponsor Package, 99€"
+      },
+      {
+        "type": "p",
+        "text": "If you are a small business or startup or just an individual who would like to show support, this is the right choice. Present your brand or product, we love new ideas and are happy to support your startup and small bitcoin business. Speak to us and we'll create a unique sponsorship that will help your growth."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Display your logo at the event",
+          "Be mentioned as sponsor on social media and in other communication channels around the event"
+        ]
+      },
+      {
+        "type": "h2",
+        "text": "Satoshi Sponsor Package, 299€"
+      },
+      {
+        "type": "p",
+        "text": "For any well recognized bitcoin brand this is a great choice to show support and foster brand recognition. We are happy to talk about details such as specific sponsoring directions (food, drink, wristband, giveaway, shirts etc)."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Display your logo at the event",
+          "Be mentioned as sponsor on social media and in other communication channels around the event",
+          "Slot to present your product or service during the event",
+          "Install a display banner at the event",
+          "Thank you box (no shipping)"
+        ]
+      },
+      {
+        "type": "h2",
+        "text": "Superhero Sponsor Package, 1275€"
+      },
+      {
+        "type": "p",
+        "text": "You're a super hero and really care for the community. We'll be able to pay for a high quality venue and top up the budget for sound, visuals and media production. That is good for you because your brand will be shown prominently through all aspects of the event."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Includes full service and production of marketing materials on request",
+          "Display your logo at the event",
+          "Be mentioned as sponsor on social media and in other communication channels around the event",
+          "Slot to present your product or service during the event",
+          "Install a display banner or other at the event (print included)",
+          "Your logo in aftermovie / event photos",
+          "Deluxe thank you box (incl shipping)"
+        ]
+      },
+      {
+        "type": "h2",
+        "text": "Giga Chad Sponsor"
+      },
+      {
+        "type": "p",
+        "text": "We will create a powerful event experience to bring your brand or service to the spotlight. Fully bespoke event production and marketing plans only on request."
+      },
+      {
+        "type": "link",
+        "text": "Talk to us on Telegram",
+        "href": "https://www.t.me/bitcoinclubmalta"
+      }
+    ]
+  }
 ];
