@@ -1,6 +1,7 @@
 // Content recovered from Wayback Machine snapshots of the previous
-// (Lovable) bitcoinclubmalta.com site, 2026-06-08 crawl. Each entry
-// records its snapshot timestamp. See OLD-PAGES-INVENTORY.md.
+// bitcoinclubmalta.com sites (Lovable era, 2026-06-08 crawl, plus
+// WordPress-era captures for pages the Lovable site did not carry).
+// Each entry records its snapshot timestamp. See OLD-PAGES-INVENTORY.md.
 
 export type OldBlock =
   | { type: "h1" | "h2" | "h3" | "h4" | "p"; text: string }
@@ -3143,6 +3144,383 @@ export const oldPages: OldPageData[] = [
         "type": "link",
         "text": "More resources",
         "href": "/learn"
+      }
+    ]
+  },
+  {
+    "path": "/bitcoin-club-malta-7-year-anniversary",
+    "snapshot": "20260608052447",
+    "title": "7 Years of Bitcoin in Malta | Bitcoin Club Malta",
+    "description": "In 2022, Bitcoin Club Malta marked seven years of bringing the island's Bitcoin community together, from a small group of curious individuals to one of the oldest Bitcoin communities in Southern Europe.",
+    "blocks": [
+      {
+        "type": "h1",
+        "text": "7 Years of Bitcoin in Malta"
+      },
+      {
+        "type": "p",
+        "text": "In 2022, Bitcoin Club Malta marked seven years of bringing the island's Bitcoin community together, from a small group of curious individuals to one of the oldest Bitcoin communities in Southern Europe."
+      },
+      {
+        "type": "h2",
+        "text": "The journey: 2015 to 2022"
+      },
+      {
+        "type": "h3",
+        "text": "BCM founded"
+      },
+      {
+        "type": "p",
+        "text": "A small group of Bitcoiners in Malta start meeting regularly to talk about Bitcoin, at a time when most people in the country had never heard of it."
+      },
+      {
+        "type": "h3",
+        "text": "First regular meetups"
+      },
+      {
+        "type": "p",
+        "text": "Monthly meetups become a fixture. The community starts attracting professionals from finance, technology, and law who want to understand what Bitcoin actually is."
+      },
+      {
+        "type": "h3",
+        "text": "Blockchain Island hype"
+      },
+      {
+        "type": "p",
+        "text": "Malta announces its Blockchain Island strategy. BCM remains focused on Bitcoin specifically, through the noise, the community keeps meeting and learning."
+      },
+      {
+        "type": "h3",
+        "text": "Bear market, steady community"
+      },
+      {
+        "type": "p",
+        "text": "Prices fall. The event calendar does not. The bear market thins out speculators and leaves behind the people who are genuinely interested in sound money."
+      },
+      {
+        "type": "h3",
+        "text": "Merchant adoption work begins"
+      },
+      {
+        "type": "p",
+        "text": "BCM members start working with local businesses to accept Bitcoin, laying the groundwork for what would become one of the denser Bitcoin merchant networks in Southern Europe."
+      },
+      {
+        "type": "h3",
+        "text": "Pandemic: online and resilient"
+      },
+      {
+        "type": "p",
+        "text": "In-person meetups pause. The community moves online without missing a beat, Zoom calls, virtual workshops, and an active Telegram group carry the momentum through."
+      },
+      {
+        "type": "h3",
+        "text": "Lightning adoption grows"
+      },
+      {
+        "type": "p",
+        "text": "Lightning Network becomes practical for everyday payments. BCM runs workshops helping members set up channels, run nodes, and accept Lightning at their businesses."
+      },
+      {
+        "type": "h3",
+        "text": "Seven years of Bitcoin in Malta"
+      },
+      {
+        "type": "p",
+        "text": "BCM turns seven. Hundreds of members, dozens of Bitcoin-accepting merchants, and a community that has weathered multiple market cycles together. The work continues."
+      },
+      {
+        "type": "p",
+        "text": "\"Seven years in, the community is stronger than it has ever been. Not because of price action. Because the people who stayed are here for the right reasons.\""
+      },
+      {
+        "type": "p",
+        "text": "Bitcoin Club Malta, 2022"
+      },
+      {
+        "type": "h3",
+        "text": "The story continues"
+      },
+      {
+        "type": "p",
+        "text": "BCM is still going, now into its second decade. Come to a meetup and be part of what comes next."
+      },
+      {
+        "type": "link",
+        "text": "About BCM",
+        "href": "/about"
+      },
+      {
+        "type": "link",
+        "text": "Upcoming events",
+        "href": "/events"
+      }
+    ]
+  },
+  {
+    "path": "/bitcoin-memes",
+    "snapshot": "20260608043904",
+    "title": "Bitcoin Memes | Bitcoin Club Malta",
+    "description": "The best Bitcoin memes from Malta's longest-running Bitcoin community. Because the most honest commentary on the financial system comes in jpeg form.",
+    "blocks": [
+      {
+        "type": "h1",
+        "text": "Bitcoin Memes"
+      },
+      {
+        "type": "p",
+        "text": "Because the most honest commentary on the financial system comes in jpeg form."
+      },
+      {
+        "type": "p",
+        "text": "BITCOIN DROPS 30%"
+      },
+      {
+        "type": "p",
+        "text": "I SLEEP"
+      },
+      {
+        "type": "p",
+        "text": "BITCOIN DROPS 50%"
+      },
+      {
+        "type": "p",
+        "text": "REAL SHIT?"
+      },
+      {
+        "type": "p",
+        "text": "NOT YOUR KEYS"
+      },
+      {
+        "type": "p",
+        "text": "NOT YOUR COINS"
+      },
+      {
+        "type": "p",
+        "text": "every Bitcoiner, every day"
+      },
+      {
+        "type": "p",
+        "text": "GOVERNMENT PRINTS TRILLIONS"
+      },
+      {
+        "type": "p",
+        "text": "BITCOIN FIXES THIS"
+      },
+      {
+        "type": "p",
+        "text": "ME: I'LL WAIT FOR A LOWER PRICE"
+      },
+      {
+        "type": "p",
+        "text": "BITCOIN:"
+      },
+      {
+        "type": "p",
+        "text": "↑↑↑↑↑"
+      },
+      {
+        "type": "p",
+        "text": "ASKED ABOUT 'CRYPTO'"
+      },
+      {
+        "type": "p",
+        "text": "IT'S BITCOIN."
+      },
+      {
+        "type": "p",
+        "text": "NOT CRYPTO."
+      },
+      {
+        "type": "p",
+        "text": "SOLD IN 2013 FOR A PIZZA"
+      },
+      {
+        "type": "p",
+        "text": "AT LEAST IT WASN'T 10,000"
+      },
+      {
+        "type": "p",
+        "text": "...COINS"
+      },
+      {
+        "type": "h3",
+        "text": "Serious about Bitcoin?"
+      },
+      {
+        "type": "p",
+        "text": "Join Malta's longest-running Bitcoin community. Meet the people who live and breathe this stuff, memes included."
+      },
+      {
+        "type": "link",
+        "text": "See upcoming events",
+        "href": "/events"
+      },
+      {
+        "type": "link",
+        "text": "Join the club",
+        "href": "/membership"
+      }
+    ]
+  },
+  {
+    "path": "/boat-meetup",
+    "snapshot": "20260608043126",
+    "title": "Bitcoin Boat Meetup | Bitcoin Club Malta",
+    "description": "Once a year, Bitcoin Club Malta takes to the sea. An afternoon on the Mediterranean with Malta's Bitcoin community, one of the most anticipated events in the BCM calendar.",
+    "blocks": [
+      {
+        "type": "h1",
+        "text": "Bitcoin Boat Meetup"
+      },
+      {
+        "type": "p",
+        "text": "Once a year, Bitcoin Club Malta takes to the sea. An afternoon on the Mediterranean with Malta's Bitcoin community, one of the most anticipated events in the BCM calendar."
+      },
+      {
+        "type": "link",
+        "text": "See upcoming events",
+        "href": "/events"
+      },
+      {
+        "type": "h2",
+        "text": "What makes the boat day special"
+      },
+      {
+        "type": "h3",
+        "text": "A day on the Mediterranean"
+      },
+      {
+        "type": "p",
+        "text": "The annual BCM boat day takes a group of Bitcoiners out onto the water for a full afternoon. Open sea, good conversations, and no altcoins."
+      },
+      {
+        "type": "h3",
+        "text": "The best networking in Malta"
+      },
+      {
+        "type": "p",
+        "text": "You cannot leave early. You cannot check your phone every five minutes. Boat days create the kind of unhurried conversation that turns acquaintances into collaborators."
+      },
+      {
+        "type": "h3",
+        "text": "Malta's coastline from the water"
+      },
+      {
+        "type": "p",
+        "text": "The Maltese archipelago looks different from the sea, limestone cliffs, hidden bays, and the Grand Harbour framed by centuries of fortification. A hard view to beat."
+      },
+      {
+        "type": "h3",
+        "text": "Lightning payments on board"
+      },
+      {
+        "type": "p",
+        "text": "BCM boat days run on Bitcoin. Refreshments, event fees, and any on-board commerce happen over Lightning. Bring a charged wallet."
+      },
+      {
+        "type": "h2",
+        "text": "A BCM tradition"
+      },
+      {
+        "type": "p",
+        "text": "The boat meetup has been part of the BCM calendar for years. It started informally, a few members who wanted to see Malta from the water, and grew into one of the community's most attended annual events."
+      },
+      {
+        "type": "p",
+        "text": "For many members, the boat day is where they have had their most valuable conversations about Bitcoin, away from screens, with the attention that open water naturally creates. Speakers, developers, investors, and curious newcomers all in the same space."
+      },
+      {
+        "type": "h2",
+        "text": "How to join the next boat day"
+      },
+      {
+        "type": "p",
+        "text": "Boat day tickets are available to BCM members first, become a member to get early access."
+      },
+      {
+        "type": "p",
+        "text": "The event is announced through the BCM newsletter and Telegram group, make sure you're subscribed."
+      },
+      {
+        "type": "p",
+        "text": "Spaces are limited by boat capacity. If the event sells out, join the waitlist through the events page."
+      },
+      {
+        "type": "p",
+        "text": "Payment is in Bitcoin over Lightning. Bring a charged mobile wallet on the day."
+      },
+      {
+        "type": "h3",
+        "text": "Don't miss the next boat day"
+      },
+      {
+        "type": "p",
+        "text": "Check the events page for dates, or become a member to get first access when tickets go on sale."
+      },
+      {
+        "type": "link",
+        "text": "View all events",
+        "href": "/events"
+      },
+      {
+        "type": "link",
+        "text": "Join BCM",
+        "href": "/membership"
+      }
+    ]
+  },
+  {
+    "path": "/donate",
+    "snapshot": "20251009172843",
+    "title": "Donate - Bitcoin Club Malta",
+    "description": "Support the Bitcoin Club Malta and help us transform Malta into a Bitcoin island!",
+    "blocks": [
+      {
+        "type": "h1",
+        "text": "Donate"
+      },
+      {
+        "type": "p",
+        "text": "Support the Bitcoin Club Malta and help us transform Malta into a Bitcoin island!"
+      },
+      {
+        "type": "p",
+        "text": "Your contributions, no matter how small, make a significant impact."
+      },
+      {
+        "type": "p",
+        "text": "Donate via Bitcoin, Lightning, Liquid or Ecash:"
+      },
+      {
+        "type": "p",
+        "text": "Every sat counts! Join us in promoting Bitcoin adoption and creating a vibrant Bitcoin community in Malta."
+      },
+      {
+        "type": "link",
+        "text": "https://coinos.io/bitcoinclub",
+        "href": "https://coinos.io/bitcoinclub"
+      }
+    ]
+  },
+  {
+    "path": "/slides",
+    "snapshot": "none",
+    "title": "Slides | Bitcoin Club Malta",
+    "description": "The original Slides page from the previous Bitcoin Club Malta site is being restored.",
+    "blocks": [
+      {
+        "type": "h1",
+        "text": "Slides"
+      },
+      {
+        "type": "p",
+        "text": "The original content of this page is being restored."
+      },
+      {
+        "type": "link",
+        "text": "See upcoming events",
+        "href": "/events"
       }
     ]
   }
