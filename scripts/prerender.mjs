@@ -202,13 +202,24 @@ function render(route) {
     '@context': 'https://schema.org',
     '@graph': route.schema,
   };
+  // Critical CSS for the snapshot block: without it the browser paints the
+  // bare HTML for a split second before React mounts (flash of unstyled
+  // text, reported by the user 2026-11-18). The styles approximate the real
+  // hero so the first paint already looks like the site.
+  const snapshotCss =
+    '.bcm-prerender{font-family:Montserrat,system-ui,sans-serif;max-width:72rem;margin:0 auto;padding:4rem 1.5rem;color:#111}' +
+    '.bcm-prerender h1{font-size:2.75rem;line-height:1.1;font-weight:700;margin:0 0 1rem}' +
+    '.bcm-prerender p{font-size:1.125rem;line-height:1.7;color:#444;margin:0 0 1rem;max-width:44rem}' +
+    '.bcm-prerender nav{margin-top:2rem;display:flex;gap:1.5rem;flex-wrap:wrap}' +
+    '.bcm-prerender a{color:#f7931a;font-weight:600;text-decoration:none}' +
+    '@media (prefers-color-scheme:dark){.bcm-prerender{color:#f5f5f5}.bcm-prerender p{color:#bbb}}';
   html = html.replace(
     '</head>',
-    `    <script type="application/ld+json">${JSON.stringify(ld)}</script>\n  </head>`,
+    `    <script type="application/ld+json">${JSON.stringify(ld)}</script>\n    <style>${snapshotCss}</style>\n  </head>`,
   );
 
   const prerender = [
-    '<main>',
+    '<main class="bcm-prerender">',
     `<h1>${esc(route.h1)}</h1>`,
     ...route.body.map((p) => `<p>${esc(p)}</p>`),
     '<nav>',
