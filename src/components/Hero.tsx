@@ -43,7 +43,7 @@ export function Hero() {
             <span className="italic">Bitcoin Island</span>
           </h1>
           <p className="text-muted-foreground text-lg mb-8 max-w-md animate-slide-up" style={{ animationDelay: '100ms' }}>
-            Nine years of building Bitcoin infrastructure in Malta. Education, merchants, policy. Join 500+ members making it happen.
+            Nine years of building Bitcoin in Malta. Education, merchants, policy. Join 500+ members making it happen.
           </p>
           <div className="flex flex-wrap gap-4 mb-12 animate-slide-up" style={{ animationDelay: '200ms' }}>
             <Button variant="outline" size="lg" asChild>

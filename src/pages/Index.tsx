@@ -15,8 +15,8 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEO
-        title="Bitcoin Club Malta | Make Malta a Bitcoin Island"
-        description="Make Malta a Bitcoin Island. Nine years building Bitcoin infrastructure in Malta — education, merchants, and policy. Join 500+ members."
+        title="Bitcoin in Malta | Meetups, Merchants & Community | Bitcoin Club Malta"
+        description="Malta Bitcoin community in one place: Bitcoin Club Malta has grown Bitcoin in Malta since 2015 with regular meetups, 100+ merchants accepting Bitcoin and 500+ members."
         canonical="https://bitcoinclubmalta.com/site"
         ogImage="https://bitcoinclubmalta.com/logo.png"
       />

@@ -113,7 +113,7 @@ export function Merchants() {
               Find Bitcoin-accepting businesses near you. Check in, leave reviews, earn badges. Help grow the circular economy.
             </p>
             <Button variant="outline" asChild>
-              <a href="/merchants">View All Merchants →</a>
+              <a href="/malta-bitcoin-map">Bitcoin merchant map for Malta →</a>
             </Button>
           </div>
           <div className="border border-border p-8 text-center">

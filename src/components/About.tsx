@@ -52,8 +52,18 @@ export function About() {
           <p className="text-muted-foreground mb-6 leading-relaxed">
             Malta has a unique position in Bitcoin history. We hosted the world's first regulated Bitcoin hedge fund in 2012. We pioneered the VFA Act in 2018—the first comprehensive cryptocurrency legislation globally.
           </p>
-          <p className="text-muted-foreground leading-relaxed">
+          <p className="text-muted-foreground leading-relaxed mb-6">
             Major exchanges chose Malta. The foundation exists. Now we're building the community infrastructure to match. EU jurisdiction, MiCA-ready, Mediterranean lifestyle, established ecosystem.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            New to the island? Start with our{' '}
+            <a
+              href="/the-complete-guide-to-using-bitcoin-in-malta-every-option-explained"
+              className="text-foreground underline underline-offset-4 hover:text-accent"
+            >
+              complete guide to using Bitcoin in Malta
+            </a>
+            .
           </p>
         </div>
         <div>

@@ -19,8 +19,8 @@ export default function ComingSoon() {
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
       <SEO
-        title="Bitcoin Club Malta | Make Malta a Bitcoin Island"
-        description="Make Malta a Bitcoin Island. Sound Money, Sound Country — Education, Adoption, and Policy."
+        title="Bitcoin Malta | Bitcoin Club Malta"
+        description="The home of Bitcoin in Malta since 2015. Bitcoin Club Malta runs meetups, helps merchants accept Bitcoin and grows the Malta Bitcoin community."
         canonical="https://bitcoinclubmalta.com/"
         ogImage="https://bitcoinclubmalta.com/logo.png"
       />

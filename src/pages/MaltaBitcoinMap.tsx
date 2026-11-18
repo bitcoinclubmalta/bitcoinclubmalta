@@ -62,8 +62,8 @@ export default function MaltaBitcoinMap() {
   return (
     <div className="min-h-screen bg-background">
       <SEO
-        title="Malta Bitcoin Map | Spend Sats Across Malta — Bitcoin Club Malta"
-        description="Find shops, bars, restaurants and services that accept Bitcoin across Malta. Powered by btcmap.org and Bitcoin Club Malta."
+        title="Bitcoin Merchant Map | Where to Spend Bitcoin in Malta | Bitcoin Club Malta"
+        description="The Bitcoin merchant map for Malta: find cafes, restaurants, bars and shops that accept Bitcoin in Malta, and spend your sats across the island. Powered by btcmap.org."
         canonical="https://bitcoinclubmalta.com/malta-bitcoin-map"
         ogImage="https://bitcoinclubmalta.com/logo.png"
       />
@@ -80,11 +80,13 @@ export default function MaltaBitcoinMap() {
               <div className="flex-1 h-px bg-border-subtle" />
             </div>
             <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl max-w-3xl mb-6">
-              Spend Sats Across Malta
+              Bitcoin Merchant Map for Malta
             </h1>
             <p className="text-muted-foreground max-w-2xl mb-8">
-              Find shops, bars, restaurants, barbers and more that accept Bitcoin on the Malta
-              Bitcoin Map ⚡ — powered by btcmap.org.
+              Looking to spend bitcoin in Malta? This bitcoin merchant map shows the cafes,
+              restaurants, bars, shops and services across the island that accept bitcoin, so you
+              can pay with sats wherever you go. The listings come from btcmap.org and are kept
+              current by the community.
             </p>
             <div className="flex flex-wrap gap-4">
               <Button variant="outline" asChild>
@@ -233,6 +235,44 @@ export default function MaltaBitcoinMap() {
                     Add yourself to btcmap.org
                   </a>
                 </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Keep exploring */}
+        <section className="section-border">
+          <div className="container py-16 lg:py-24">
+            <div className="flex items-center gap-4 mb-8">
+              <span className="text-xs text-muted-foreground uppercase tracking-widest">
+                Keep Exploring
+              </span>
+              <div className="flex-1 h-px bg-border-subtle" />
+            </div>
+            <div className="grid md:grid-cols-2 gap-px bg-border border border-border">
+              <div className="bg-background p-6 lg:p-8">
+                <h3 className="font-heading text-xl mb-3">
+                  <a
+                    href="/the-complete-guide-to-using-bitcoin-in-malta-every-option-explained"
+                    className="hover:underline"
+                  >
+                    Complete guide to using Bitcoin in Malta
+                  </a>
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  Every option for buying, spending and living on Bitcoin in Malta, explained in
+                  one place.
+                </p>
+              </div>
+              <div className="bg-background p-6 lg:p-8">
+                <h3 className="font-heading text-xl mb-3">
+                  <a href="/events" className="hover:underline">
+                    Bitcoin meetups and events in Malta
+                  </a>
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  Meet the community in person at the next Bitcoin Club Malta event.
+                </p>
               </div>
             </div>
           </div>
